@@ -1,0 +1,76 @@
+.header{
+    background-color:rgb(15, 63, 101);
+    padding: 20px;
+    font-family: 'Raleway';
+    
+    &__title{
+    color:rgb(255, 255, 255);
+    font-size: 2rem;
+    
+    }
+    
+    .nav__list{
+        display: flex;
+        justify-content: space-around;
+    
+    }
+    
+    .nav__item{
+    list-style: none;
+    
+    
+    }
+    
+    .nav__link{
+        color:antiquewhite;
+        text-decoration: none;
+    
+    }
+    }
+    
+    .dark-theme{
+        background-color: black;
+        color :brown
+    }
+    
+    
+    
+    
+    @media(max-width:768px)
+    {
+    .header__title{
+        font-size: 1.5rem;
+    }
+    .nav__list{
+        flex-direction: column;
+    }
+    
+    
+    }
+    
+    
+    @media (max-width: 480px) {
+        .header__title{
+            font-size: 1.2rem;
+        }
+    }
+
+    a{
+        color: #95c7d9; 
+        text-decoration: none;
+
+        // Cuando el enlace se pase el ratón por encima (hover)
+        &:hover {
+            color: #eeb6d9;
+        }
+        
+    }
+
+    .header .nav__link a { 
+        color: antiquewhite;
+        text-decoration: none;
+      }
+      
+      .header .nav__link a:hover {
+        color: #eeb6d9;
+      }

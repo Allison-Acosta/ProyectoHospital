@@ -1,0 +1,41 @@
+
+.button{
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    border: null;
+    cursor: pointer;
+}
+
+
+.button--primary{
+background-color: rgb(255, 255, 255);
+color:#273076;
+}
+
+
+.button--secondary{
+    background-color: #2ecc71;
+    color:#fff;
+    }
+
+.button__text{
+    font-weight: bold;
+}
+
+
+/*ESTADOS*/
+button:hover{
+
+    background-color: rgb(166, 209, 218);
+}
+
+.dark-theme .button:hover{
+    background-color: rgb(68, 1, 27);
+}
+
+/*THEME*/
+
+.dark-theme .button{
+    background-color: aquamarine;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- CSS General -->
+    <link rel="stylesheet" href="scss/main.css" />
+  </head>
+
+
+
+  <body>
+    <header class="header">
+      <h1 class="header__title">Aranceles</h1>
+      <nav>
+        <ul class="nav__list">
+          <li class="nav__item" class="nav__link">
+            <a href="Index.html">Página Principal</a>
+          </li>
+          <li class="nav__item" class="nav__link">
+            <a href="EquipoMedico.html">Equipo Medico</a>
+          </li>
+          <li class="nav__item" class="nav__link">
+            <a href="Precios.html">Aranceles</a>
+          </li>
+          <li class="nav__item">
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-lg rounded-pill"
+              
+            >
+              <span class="button__text" onclick="reservarCita()">Reservar Cita</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Formulario de contacto -->
+    <main class="main-content">      
+      <section class = "hero" >
+        <h2 class="hero__title">Precios y ofertas</h2>
+        <nav>
+            <h5> Por 2 o mas consultas se harán descuentos! Pida su presupuesto</h5>
+            <button type="submit" onclick="consultaSimple(1)">1 consulta</button>    
+        </nav>
+        <nav>
+            <button type="submit" onclick="consultaSimple(2)"> 2 consultas (igual servicios) </button>        
+        </nav>
+        <nav>
+            <button type="submit" onclick="consultaMixta(2)"> 2 consultas (múltiples servicios) </button>     
+        </nav>
+             
+       
+        
+    
+           
+        
+
+      </section>
+
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+      <h3 class="hero__text">Enlaces Rápidos</h3>
+      <ul class="nav__list">
+        <li class="nav__item" class="nav__link">
+          <a href="Contacto.html">Contacto</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="EquipoMedico.html">Equipo Médico</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="Reservar.html">Reservar Cita</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="Servicios.html">Servicios</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="MantenedorMedico.html">Mantenedor Medico</a>
+        </li>
+      </ul>
+
+      <h3 class="hero__text">Información de Contacto</h3>
+      <p class="footer__text">Teléfono: (123) 456-7890</p>
+      <p class="footer__text">Email: contacto@hospital.com</p>
+      <p class="footer__text">Dirección: Calle Ejemplo 123, Ciudad, País</p>
+
+      <h3 class="hero__text">Redes Sociales</h3>
+      <!-- 
+          Se le agrega un target="_blank" para que el enlace te lo abra
+          en otra pestaña.
+          Es para mayor comodidad, si no lo tiene, abre el link en la misma pagina.
+          -->
+      <ul class="nav__list">
+        <li class="nav__item" class="nav__link">
+          <a href="https://www.facebook.com" target="_blank">Facebook</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="https://twitter.com" target="_blank">Twitter</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="https://www.instagram.coml" target="_blank">Instagram</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+        </li>
+      </ul>
+
+      <p class="footer__text">
+        &copy; 2024 Clinica Aguila. Todos los derechos reservados.
+      </p>
+    </footer>
+
+    <script src="utils/algorithem.js"></script>
+    <script src="utils/metodos.js"></script>
+  </body>
+</html>
+
+
+</html>

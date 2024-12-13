@@ -1,0 +1,31 @@
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1200px;
+
+
+//$bs-btn-padding-x : 3rem;
+$btn-outline-primary-bg: transparent;  // Fondo transparente para los botones outline
+$btn-outline-primary-border: #36a810;  // Color del borde para los botones outline
+$btn-outline-primary-color: #ffffff;   // Color del texto para los botones outline
+@import 'vendors/bootstrap';
+
+
+//@import 'components/button';
+@import 'layout/header';
+@import 'layout/cuerpo';
+@import 'layout/footer';
+
+
+
+
+// Estoy modificando cosas del bootstrap para que queden acorde a mi pag
+//$primary: #0e48be;
+//$btn-padding-y: 1.5rem;
+
+
+
+
+
+
+
+

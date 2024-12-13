@@ -1,0 +1,63 @@
+.main-content{
+    padding: 20px;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+}
+.grid-container {
+    display: grid;
+    grid-template-areas: 
+      'top top top top'
+      'subheader subheader subheader subheader ' 
+      'team team team team'
+      'leftt point rightt lastright ';
+     grid-column-gap: 10px;
+}
+
+.top {
+    grid-area: top;  // Asignar el área 'top' al h2
+}
+
+.team {
+    grid-area: team;
+}
+
+.subheader {
+    grid-area: subheader;  // Asignar el área 'subheader' al h3
+}
+
+.leftt {
+    grid-area: leftt;
+}
+
+.point {
+    grid-area: point;
+}
+
+.rightt {
+    grid-area: rightt;
+}
+
+.lastright {
+    grid-area: lastright;
+}
+
+.hero__title{
+
+    position: relative;
+    top: 10px;
+    left: 5px;
+}
+
+@media (max-width: $mobile) {
+    .grid-container {
+        grid-template-areas: 
+          'top top top top'
+          'subheader subheader subheader subheader' 
+          'team team team team'
+          'leftt leftt leftt leftt'
+          'point point point point'
+          'rightt rightt rightt rightt'
+          'lastright lastright lastright lastright';
+    }
+}

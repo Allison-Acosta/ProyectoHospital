@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipo Médico</title>
+
+    <!-- CSS General -->
+    <link rel="stylesheet" href="scss/main.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__title">Nuestro Equipo Médico</h1>
+      <nav>
+        <ul class="nav__list">
+          <li class="nav__item" class="nav__link">
+            <a href="Index.html">Página Principal</a>
+          </li>
+          <li class="nav__item" class="nav__link">
+            <a href="Precios.html">Aranceles</a>
+          </li>
+          <li class="nav__item" class="nav__link">
+            <a href="Contacto.html">Contacto</a>
+          </li>
+          <li class="nav__item">
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-lg rounded-pill"
+            >
+              <span class="button__text" onclick="reservarCita()"
+                >Reservar Cita</span
+              >
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+      <section class="grid-container">
+        <h2 class="top">Bienvenidos.</h2>
+        <h5 class="subheader">
+          En Clínica Águila, estamos profundamente comprometidos con el
+          ejercicio ético y profesional de la medicina, brindando atención de
+          alta calidad a nuestros pacientes. Nos esforzamos por aplicar los más
+          altos estándares médicos, con un enfoque integral y personalizado.
+          Nuestro equipo de profe sionales altamente capacitados trabaja cada
+          día para garantizar diagnósticos precisos, tratamientos efectivos y
+          una atención humana, centrada siempre en el bienestar y la salud de
+          cada persona que atendemos.
+        </h5>
+        <h2 class="team">Nuestos Jefes de Departamento</h2>
+        <!-- team -->
+        <div class="leftt">
+          <section>
+            <h3 class="hero__text">
+              <strong>Director Medico: Andres Figueroa</strong>
+            </h3>
+          </section>
+          <button type="submit" onclick="mostrarContacto('Andres Figueroa')">
+            Contacto
+          </button>
+          <section>
+            <img src="Imagenes/Med4.PNG" alt="Andres Figueroa" height="200" />
+          </section>
+          <section>
+            <h5>
+              Director médico con 20 años de experiencia, dedicado a ofrecer
+              atención de calidad y a liderar equipos en la implementación de
+              prácticas médicas innovadoras.
+            </h5>
+          </section>
+        </div>
+
+        <div class="point">
+          <section>
+            <h3 class="hero__text">
+              <strong>Jefe de Dermatología: Miguel Zegpi</strong>
+            </h3>
+          </section>
+          <section>
+            <button type="submit" onclick="mostrarContacto('Miguel Zegpi')">
+              Contacto
+            </button>
+          </section>
+          <section>
+            <img src="Imagenes/Med3.PNG" alt="Miguel Zegpi" height="200" />
+          </section>
+          <section>
+            <h5>
+              Jefe del Departamento de Dermatología. Con 10 años de experiencia
+              y especialidad en trastornos de la piel causados por radiación y
+              factores externos.
+            </h5>
+          </section>
+        </div>
+
+        <div class="rightt">
+          <section>
+            <h3 class="hero__text">
+              <strong>Jefe de Nutrición: Alicia Stroke </strong>
+            </h3>
+          </section>
+          <section>
+            <button type="submit" onclick="mostrarContacto('Alicia Stroke')">
+              Contacto
+            </button>
+          </section>
+          <section>
+            <img src="Imagenes/Med2.PNG" alt="Alicia Stroke " height="200" />
+          </section>
+          <section>
+            <h5>
+              Jefe del Departamento de Nutrición, especialista en obesidad y
+              trastornos alimenticios, enfocado en planes personalizados para
+              una salud integral y sostenible.
+            </h5>
+          </section>
+        </div>
+
+        <div class="lastright">
+          <section>
+            <h3 class="hero__text">
+              <strong>Jefe de Psiquiatría: Ana María Figg</strong>
+            </h3>
+          </section>
+          <section>
+            <button type="submit" onclick="mostrarContacto('Ana María Figg')">
+              Contacto
+            </button>
+          </section>
+          <section>
+            <img src="Imagenes/Med1.PNG" alt="Ana María Figg" height="200" />
+          </section>
+          <section>
+            <h5>
+              Jefe del Departamento de Psiquiatría, especialista en trastornos
+              de la personalidad y personalidad limitrofe.
+            </h5>
+          </section>
+        </div>
+      </section>
+
+      <section class="grid-container">
+        <div class="leftt">
+          <button type="submit" onclick="mostrarMedicosDisponibles()">
+            Medicos disponibles
+          </button>
+          <li class="medDisponibles"></li>
+        </div>
+        <div class="point">
+          <button type="submit" onclick="mostrarMedicosNoDisponibles()">
+            Medicos sin disponibilidad
+          </button>
+          <li class="medNoDisponibles"></li>
+        </div>
+        <div class="rightt">
+          <button type="submit" onclick="buscarMedicoClass()">
+            Buscar Medico
+          </button>
+          <li class="medBuscado"></li>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <h3 class="footer__title">Enlaces Rápidos</h3>
+      <ul class="footer__nav-list">
+        <li class="footer__nav-item">
+          <a href="Contacto.html" class="footer__nav-link">Contacto</a>
+        </li>
+        <li class="footer__nav-item">
+          <a href="EquipoMedico.html" class="footer__nav-link">Equipo Médico</a>
+        </li>
+        <li class="footer__nav-item">
+          <a href="Reservar.html" class="footer__nav-link">Reservar Cita</a>
+        </li>
+        <li class="footer__nav-item">
+          <a href="Servicios.html" class="footer__nav-link">Servicios</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="MantenedorMedico.html">Mantenedor Medico</a>
+        </li>
+      </ul>
+
+      <h3 class="footer__title">Información de Contacto</h3>
+      <p class="footer__info-text">Teléfono: (123) 456-7890</p>
+      <p class="footer__info-text">Email: contacto@hospital.com</p>
+      <p class="footer__info-text">
+        Dirección: Calle Ejemplo 123, Ciudad, País
+      </p>
+
+      <h3 class="footer__title">Redes Sociales</h3>
+      <ul class="footer__social-list">
+        <li class="footer__social-item">
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            class="footer__social-link"
+            >Facebook</a
+          >
+        </li>
+        <li class="footer__social-item">
+          <a
+            href="https://twitter.com"
+            target="_blank"
+            class="footer__social-link"
+            >Twitter</a
+          >
+        </li>
+        <li class="footer__social-item">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            class="footer__social-link"
+            >Instagram</a
+          >
+        </li>
+        <li class="footer__social-item">
+          <a
+            href="https://www.linkedin.com"
+            target="_blank"
+            class="footer__social-link"
+            >LinkedIn</a
+          >
+        </li>
+      </ul>
+
+      <p class="footer__text">
+        &copy; 2024 Clinica Aguila. Todos los derechos reservados.
+      </p>
+    </footer>
+
+    <script src="utils/algorithem.js"></script>
+    <script src="utils/metodos.js"></script>
+  </body>
+</html>

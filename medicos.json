@@ -1,0 +1,165 @@
+[
+    { "nombre": "Andres Figueroa", 
+    "especialidad":  "General",
+    "años": 20,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": ["lunes", "martes", "miercoles", "jueves", "viernes"],
+        "PM": ["lunes", "viernes"]
+    },
+    "contacto":{
+        "telefono" : 993587895,
+        "mail": "Afigueroa@clinicaagila.com"
+    }
+},
+
+    { "nombre": "Miguel Zegpi", 
+    "especialidad":  "Dermatología",
+    "años": 10,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": ["lunes", "martes", "jueves", "viernes"],
+        "PM": ["lunes", "martes", "jueves", "viernes"]
+    },
+    "contacto":{
+        "telefono" : 998574266,
+        "mail": "Mzegpi@clinicaagila.com"
+    }},
+
+    { "nombre": "Alicia Stroke", 
+    "especialidad":  "Nutrición",
+    "años": 15,
+    "disponibilidad": "false",
+    "horarios":{
+        "AM": ["lunes", "martes", "miercoles", "jueves", "viernes"],
+        "PM": ["lunes", "martes", "jueves"]
+    },
+    "contacto":{
+        "telefono" : 9996841022,
+        "mail": "Astroke@clinicaagila.com"
+    }},
+
+    { "nombre": "Ana María Figg", 
+    "especialidad":  "Psiquiatría",
+    "años": 10,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": ["martes", "jueves", "viernes"],
+        "PM": ["lunes", "martes", "miercoles", "jueves", "viernes"]
+    },
+    "contacto":{
+        "telefono" : 99620058,
+        "mail": "Afigg@clinicaagila.com"
+    }},
+
+    { "nombre": "Daniela Puma", 
+    "especialidad":  "Dermatología",
+    "años": 5,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": ["lunes"],
+        "PM": ["lunes", "martes"]
+    },
+    "contacto":{
+        "telefono" : 998586266,
+        "mail": "Dpuma@clinicaagila.com"
+    }},
+    { "nombre": "Manuel Soto", 
+    "especialidad":  "Dermatología",
+    "años": 12,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": ["viernes"],
+        "PM": [ "jueves", "viernes"]
+    },
+    "contacto":{
+        "telefono" : 998582266,
+        "mail": "Msoto@clinicaagila.com"
+    }},
+    { "nombre": "Camila Zapata", 
+    "especialidad":  "Dermatología",
+    "años": 8,
+    "disponibilidad": "false",
+    "horarios":{
+        "AM": [ "martes", "jueves", "viernes"],
+        "PM": [ "viernes"]
+    },
+    "contacto":{
+        "telefono" : 996582031,
+        "mail": "Czapata@clinicaagila.com"
+    }},
+
+    { "nombre": "Carlos Foix", 
+    "especialidad":  "Nutrición",
+    "años": 13,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": [ "jueves"],
+        "PM": ["lunes", "martes", "jueves"]
+    },
+    "contacto":{
+        "telefono" : 9958241022,
+        "mail": "Cfoix@clinicaagila.com"
+    }},
+    { "nombre": "Pamela Zuñiga", 
+    "especialidad":  "Nutrición",
+    "años": 6,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": ["lunes"],
+        "PM": ["lunes", "martes"]
+    },
+    "contacto":{
+        "telefono" : 9996842058,
+        "mail": "Pzuniga@clinicaagila.com"
+    }},
+    { "nombre": "Tomas Abarca", 
+    "especialidad":  "Nutrición",
+    "años": 8,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": [ "jueves", "viernes"],
+        "PM": ["lunes"]
+    },
+    "contacto":{
+        "telefono" : 9996582022,
+        "mail": "Tabarca@clinicaagila.com"
+    }},
+
+    { "nombre": "María Belen Dias", 
+    "especialidad":  "Psiquiatría",
+    "años": 14,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": [ "jueves"],
+        "PM": [ "jueves", "viernes"]
+    },
+    "contacto":{
+        "telefono" : 998745200,
+        "mail": "Mdias@clinicaagila.com"
+    }},
+    { "nombre": "Gabriel Mesa", 
+    "especialidad":  "Psiquiatría",
+    "años": 8,
+    "disponibilidad": "true",
+    "horarios":{
+        "AM": ["martes", "jueves", "viernes"],
+        "PM": ["lunes"]
+    },
+    "contacto":{
+        "telefono" : 778524088,
+        "mail": "Gmesa@clinicaagila.com"
+    }},
+    { "nombre": "Patricio Villegas", 
+    "especialidad":  "Psiquiatría",
+    "años": 7,
+    "disponibilidad": "false",
+    "horarios":{
+        "AM": [ "viernes"],
+        "PM": ["lunes", "martes", "miercoles", "jueves"]
+    },
+    "contacto":{
+        "telefono" : 99850077,
+        "mail": "Pvillegas@clinicaagila.com"
+    }}
+]

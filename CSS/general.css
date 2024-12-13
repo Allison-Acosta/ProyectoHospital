@@ -1,0 +1,89 @@
+/* General reset: Elimina márgenes y rellenos predeterminados para tener un punto de partida limpio */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fuente y color de fondo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Estilos para el encabezado */
+header {
+    background-color: #0044cc;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+header nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Configuración de la sección principal */
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Listas de servicios o contenido */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 0.5rem 0;
+}
+
+/* Estilos de imágenes */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Botones */
+button {
+    background-color: #0044cc;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003399;
+}
+
+/* Estilos del pie de página */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #ddd;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+footer a:hover {
+    color: white;
+}

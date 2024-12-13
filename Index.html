@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bienvenida Hospital</title>
+    <!-- CSS General -->
+    <link rel="stylesheet" href="scss/main.css" />
+
+    <!-- CSS Específico para esta página -->
+    <!-- <link rel="stylesheet" href="CSS/Index.css" />-->
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="header__title">Clinica Águila</h1>
+      <img src="Imagenes/Icono hospital.jpg" alt="Icono Hospital" width="100" />
+      <nav>
+        <ul class="nav__list">
+          <li class="nav__item" class="nav__link">
+            <a href="EquipoMedico.html">Equipo Médico</a>
+          </li>
+
+          <li class="nav__item" class="nav__link">
+            <a href="Precios.html">Aranceles</a>
+          </li>
+
+          <li class="nav__item" class="nav__link">
+            <a href="Contacto.html">Contacto</a>
+          </li>
+
+          <li class="nav__item">
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-lg rounded-pill"
+            >
+              <span class="button__text" onclick="reservarCita()"
+                >Reservar Cita</span
+              >
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <section class="hero">
+        <h2 class="hero__title">Bienvenidos.</h2>
+        <h4 class="hero__text">
+          En nuestra clínica, estamos comprometidos en brindarte el apoyo que
+          necesitas en todo momento. Nacimos con el propósito de promover la
+          prevención de enfermedades, enfocándonos en la atención temprana y el
+          fomento de hábitos de vida saludables.
+        </h4>
+      </section>
+      <section>
+        <h2 class="hero__title">Servicios disponibles</h2>
+        <button type="submit" onclick="filtrarServicios()">
+          Solo disponibles
+        </button>
+        <button type="submit" onclick="mostrarServicios()">
+          Mostrar todos
+        </button>
+
+        <ul class="nav__list">
+          <li class="nav__item" data-disponible="true">
+            <img
+              src="Imagenes/dermatologia.jpg"
+              alt="Dermatología"
+              width="100"
+            />
+            <h3 class="hero__text">
+              <strong>Dermatología y cuidados de la piel</strong>
+            </h3>
+            <h5>
+              Nos especializamos en la prevención de los efectos negativos
+              causados por la exposición a factores ambientales, tales como la
+              radiación solar y la contaminación. Sabemos que estos factores
+              pueden tener un impacto significativo en la salud de la piel y el
+              bienestar general, por lo que nos enfocamos en ofrecer soluciones
+              personalizadas para minimizar los riesgos asociados. Nuestro
+              enfoque integral no solo abarca la protección contra los daños
+              inmediatos, sino también estrategias para cuidar y fortalecer la
+              salud a largo plazo.
+            </h5>
+          </li>
+
+          <li class="nav__item" data-disponible="true">
+            <img
+              src="Imagenes/nutricionista.avif"
+              alt="Nutrición"
+              width="100"
+            />
+            <h3 class="hero__text"><strong>Nutrición y dietética</strong></h3>
+            <h5>
+              Sabemos que cada persona es única, por lo que diseñamos planes de
+              alimentación personalizados, adaptados a las necesidades
+              específicas de cada paciente. Consideramos su estilo de vida, sus
+              preferencias, y los requerimientos nutricionales particulares para
+              garantizar un enfoque equilibrado y efectivo. Nuestro objetivo es
+              proporcionar opciones saludables que se ajusten a cada situación,
+              promoviendo el bienestar y la salud a largo plazo.
+            </h5>
+          </li>
+
+          <li class="nav__item" data-disponible="true">
+            <img src="Imagenes/psiquiatria.jpg" alt="Psiquiatría" width="100" />
+            <h3 class="hero__text">
+              <strong>Psiquiatría y salud mental</strong>
+            </h3>
+            <h5>
+              En nuestra clínica ofrecemos terapias psiquiátricas y psicológicas
+              personalizadas para cada paciente, basadas en una evaluación
+              profesional previa. Sabemos que la salud mental es fundamental
+              para el bienestar general, por lo que brindamos un enfoque
+              integral, adaptado a las necesidades individuales. Nuestro
+              objetivo es proporcionar un espacio seguro y de apoyo, donde cada
+              paciente pueda encontrar las herramientas necesarias para su
+              recuperación y crecimiento personal.
+            </h5>
+          </li>
+
+          <li class="nav__item" data-disponible="false">
+            <h3 class="hero__text">
+              <strong>Kinesiología</strong>
+            </h3>
+            <h5>Proximo servicio disponible. A partir de Junio 2025.</h5>
+          </li>
+
+          <li class="nav__item" data-disponible="false">
+            <h3 class="hero__text">
+              <strong>Ginecología</strong>
+            </h3>
+            <h5>Proximo servicio disponible. A partir de Agosto 2025.</h5>
+          </li>
+
+          <li class="nav__item" data-disponible="false">
+            <h3 class="hero__text">
+              <strong>Atención Dental</strong>
+            </h3>
+            <h5>Proximo servicio disponible. A partir del 2026.</h5>
+          </li>
+        </ul>
+      </section>
+      <section class="hero">
+        <h2 class="hero__title">Testimonios</h2>
+        <div class="card maincard">
+          <h3 class="card-header"><strong>María Ines Godoy</strong></h3>
+          <h5 class="card-body">
+            Asistí en febrero a la clinica por un problema de alimentación.
+            Muchas gracias a todo el equipo. Nunca me habia sentido tan apoyada.
+            Hoy estoy participando en el programa de seguimiento y sé que
+            lograré mi objetivo de sentirme bien y sobretodo sana.
+          </h5>
+        </div>
+        <div class="card maincard">
+          <h3 class="card-header"><strong>Fernando Tapia</strong></h3>
+          <h5 class="card-body">
+            Gracias al equipo de dermatologia por todo el apoyo y orientación.
+          </h5>
+        </div>
+        <div class="card maincardt">
+          <h3 class="card-header"><strong>Fabiola Camposano</strong></h3>
+          <h5 class="card-body">
+            Se necesitan mas profesionales dedicados a la salud mental. Gracias
+            a todos los que me apoyaron en mi recuperación.
+          </h5>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <h3 class="hero__text">Enlaces Rápidos</h3>
+      <ul class="nav__list">
+        <li class="nav__item" class="nav__link">
+          <a href="Contacto.html">Contacto</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="EquipoMedico.html">Equipo Médico</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="Reservar.html">Reservar Cita</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="Servicios.html">Servicios</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="MantenedorMedico.html">Mantenedor Medico</a>
+        </li>
+      </ul>
+
+      <h3 class="hero__text">Información de Contacto</h3>
+      <p class="footer__text">Teléfono: (123) 456-7890</p>
+      <p class="footer__text">Email: contacto@hospital.com</p>
+      <p class="footer__text">Dirección: Calle Ejemplo 123, Ciudad, País</p>
+
+      <h3 class="hero__text">Redes Sociales</h3>
+      <!-- 
+          Se le agrega un target="_blank" para que el enlace te lo abra
+          en otra pestaña.
+          Es para mayor comodidad, si no lo tiene, abre el link en la misma pagina.
+          -->
+      <ul class="nav__list">
+        <li class="nav__item" class="nav__link">
+          <a href="https://www.facebook.com" target="_blank">Facebook</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="https://twitter.com" target="_blank">Twitter</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="https://www.instagram.coml" target="_blank">Instagram</a>
+        </li>
+        <li class="nav__item" class="nav__link">
+          <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+        </li>
+      </ul>
+
+      <p class="footer__text">
+        &copy; 2024 Clinica Aguila. Todos los derechos reservados.
+      </p>
+    </footer>
+
+    <script src="utils/algorithem.js"></script>
+    <script src="utils/metodos.js"></script>
+  </body>
+</html>

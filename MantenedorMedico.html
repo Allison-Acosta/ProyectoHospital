@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mantenedor de Funcionarios</title>
+    <link rel="stylesheet" href="scss/main.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="header__title">Mantenedor de Funcionarios</h1>
+      <nav>
+        <ul class="nav__list">
+          <li class="nav__item" class="nav__link">
+            <a href="Index.html">Página Principal</a>
+          </li>
+          <li class="nav__item" class="nav__link">
+            <a href="EquipoMedico.html">Equipo Medico</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <ul>
+        <button onclick="mostrarMedicos()">Mostrar Medicos</button>
+        <button onclick="orderMedicosByName()">Ordenar por Nombre</button>
+        <button onclick="orderMedicosByEspeciality()">
+          Ordenar por Especialidad
+        </button>
+        <button onclick="lookFor()">Buscar Medico</button>
+        <button onclick="agregarMedico()">Agregar Medico</button>
+      </ul>
+    </main>
+
+    <div id="output"></div>
+    <script src="utils/estructuras.js"></script>
+    <script src="utils/algorithem.js"></script>
+    <script src="appMantenedor.js"></script>
+  </body>
+</html>

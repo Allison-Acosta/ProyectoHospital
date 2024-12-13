@@ -1,0 +1,155 @@
+// Footer
+.footer {
+    background-color: rgb(15, 63, 101);
+    padding: 20px;
+    display: flex;
+    font-family: 'Raleway';
+    color: rgb(255, 255, 255);
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  
+  // Títulos en el footer (Enlaces Rápidos, Información de Contacto, Redes Sociales)
+  .footer__title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  // Listas de navegación
+  .footer__nav-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer__nav-item {
+    margin-bottom: 10px;
+  }
+  
+  .footer__nav-link {
+    color: white;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  // Información de contacto
+  .footer__info-text {
+    margin: 5px 0;
+  }
+  
+  // Redes sociales
+  .footer__social-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer__social-item {
+    margin-bottom: 10px;
+  }
+  
+  .footer__social-link {
+    color: white;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  // Responsividad
+  @media (max-width: $mobile) {
+    .footer {
+      flex-direction: column;
+      padding: 15px;
+      text-align: center;
+    }
+  
+    .footer__title {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+  
+    .footer__nav-list {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .footer__nav-item {
+      margin-bottom: 5px;
+    }
+  
+    .footer__info-text {
+      margin: 5px 0;
+    }
+  
+    .footer__social-list {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .footer__social-item {
+      margin-bottom: 5px;
+    }
+  }
+  
+  @media (max-width: $tablet) {
+    .footer {
+      flex-direction: column;
+      padding: 18px;
+    }
+  
+    .footer__title {
+      font-size: 1.1rem;
+    }
+  
+    .footer__nav-list {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .footer__nav-item {
+      margin-bottom: 8px;
+    }
+  
+    .footer__social-list {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .footer__social-item {
+      margin-bottom: 8px;
+    }
+  }
+  
+  @media (min-width: $desktop) {
+    .footer {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 20px;
+    }
+  
+    .footer__nav-list {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    .footer__nav-item {
+      margin-right: 20px;
+    }
+  
+    .footer__social-list {
+      display: flex;
+      flex-direction: row;
+    }
+  
+    .footer__social-item {
+      margin-right: 20px;
+    }
+  }
+  
