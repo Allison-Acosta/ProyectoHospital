@@ -1,5 +1,5 @@
 import Medicos from './DoctorCard';
-import Formulario from './Formulario';
+import Formulario from './AppointmentForm';
 import Servicios from './ServiceList';
 
 export default function Trunk({indice, medicos, servicios})
