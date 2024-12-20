@@ -23,6 +23,8 @@ servicios: son los servicios disponibles, se leen del archivo servicios.json
    const [email, setEmail] = useState(""); // Guardar el valor del campo "email"
    const [mensaje, setMensaje] = useState(""); // Guardar el valor del campo "mensaje"
 
+   UseEfect lo usamos para cargar en el appointmentForm.jsx los datos del medico.json
+
 Se toman por defecto campos vacios para luego ser llenados (cambiados) con la informacion entregada por el usuario.
 
 7. Al pedir una cita, se muestra en consola los datos de la cita y se puede ademas ver la informacion del medico seleccionado.
