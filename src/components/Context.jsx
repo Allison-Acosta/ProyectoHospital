@@ -1,17 +1,17 @@
 import React, { createContext, useState } from 'react';
-import medicos from "../../medicos.json"
-import servicios from "../../servicios.json";
+import medico from "../../medicos.json"
+import servicio from "../../servicios.json";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   
     console.log("hola desde context");
-  const [medico, setmedico] = useState(medicos);
-  const [servicio, setservicio] = useState(servicios);
+  const [medicos, setmedicos] = useState(medico);
+  const [servicios, setservicios] = useState(servicio);
   
   return (
-    <UserContext.Provider value={{ medico, setmedico, servicio, setservicio }}>
+    <UserContext.Provider value={{ medicos, setmedicos, servicios, setservicios }}>
       {children}
     </UserContext.Provider>
   );
