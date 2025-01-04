@@ -1,7 +1,8 @@
 import React from "react"; // Importar React (opcional en versiones recientes si usas JSX)
+import PropTypes from 'prop-types';
 
 // Declaración del componente como una función
-export default function Servicios({ servicios }) {
+function Servicios({ servicios }) {
     // Aquí puedes usar lógica y hooks si es necesario
     // Ejemplo: const [estado, setEstado] = React.useState(valorInicial);
   
@@ -23,3 +24,17 @@ export default function Servicios({ servicios }) {
       </section>
     );
   }
+
+  Formulario.propTypes = {
+    servicios: PropTypes.arrayOf(
+        PropTypes.shape({
+            nombre: PropTypes.string.isRequired, // "nombre" debe ser un string y es obligatorio
+            bajada: PropTypes.string.isRequired, // "bajada" debe ser un string y es obligatorio
+            descripcion: PropTypes.string.isRequired, // "descripcion" debe ser un string y es obligatorio
+            disponibilidad: PropTypes.string.isRequired, // "disponibilidad" debe ser un string y es obligatorio
+        })
+    ).isRequired, // "servicios" debe ser un array de objetos y es obligatorio
+};
+
+// Exportación del componente
+export default Servicios;

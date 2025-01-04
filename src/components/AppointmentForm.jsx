@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react"; // Importar React y useState
+import PropTypes from 'prop-types';
 
 // Declaración del componente como una función
-export default function Formulario({ medicos }) {
+function Formulario({ medicos }) {
     // Estados para cada campo del formulario
     const [nombre, setNombre] = useState(""); // Guardar el valor del campo "nombre"
     const [email, setEmail] = useState(""); // Guardar el valor del campo "email"
@@ -53,6 +54,19 @@ export default function Formulario({ medicos }) {
     // Función para manejar el envío del formulario
     const manejarEnvio = (e) => {
         e.preventDefault(); // Prevenir la recarga de la página al enviar el formulario
+
+        // Validación del campo "nombre"
+        if (!/^[A-Za-z\s]+$/.test(nombre)) {
+            alert("El campo 'nombre' solo debe contener letras y espacios.");
+            return;
+        }
+
+        // Validación del campo "email"
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            alert("Por favor, ingresa un correo electrónico válido.");
+            return;
+        }
+
         const medicoSeleccionado = medicosLista.find(medico => medico.nombre === opcionSeleccionada);
         // Aquí puedes procesar los datos del formulario (por ejemplo, enviarlos a un servidor)
         console.log("Formulario enviado:", { nombre, email, mensaje, medicoSeleccionado, diasSeleccionados });
@@ -176,4 +190,20 @@ export default function Formulario({ medicos }) {
         </form>
         </div>
     );
+    
 }
+// Definición de PropTypes
+Formulario.propTypes = {
+    medicos: PropTypes.arrayOf(
+        PropTypes.shape({
+            nombre: PropTypes.string.isRequired, // nombre debe ser un string y es obligatorio
+            horarios: PropTypes.shape({
+                AM: PropTypes.arrayOf(PropTypes.string).isRequired, // AM debe ser un array de strings
+                PM: PropTypes.arrayOf(PropTypes.string).isRequired, // PM debe ser un array de strings
+            }).isRequired, // horarios es un objeto y es obligatorio
+        })
+    ).isRequired, // medicos debe ser un array de objetos y es obligatorio
+};
+
+// Exportación del componente
+export default Formulario;
