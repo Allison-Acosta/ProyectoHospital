@@ -9,6 +9,7 @@ import { UserProvider } from "./components/Context";
 
 
 export default function App() {
+
   const [indice, setIndice] = useState("1"); // Estado para controlar qué mostrar en Trunk
  
   const manejarCambioDeIndice = (nuevoIndice) => {
@@ -19,6 +20,7 @@ export default function App() {
     <div>
       {/* Pasamos el manejador al Header */}
       <Header onIndiceChange={manejarCambioDeIndice} />
+      
       {/* Renderizamos Trunk con el índice actual */}
       <UserProvider>
         <Trunk indice={indice} />
