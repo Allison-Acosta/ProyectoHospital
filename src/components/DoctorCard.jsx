@@ -1,5 +1,6 @@
 import React from "react"; // Importar React (opcional en versiones recientes si usas JSX)
 import withModal from './PortalExample';
+import PropTypes from 'prop-types';
 
 // Declaración del componente como una función
 function Medicos({ medicos, openModal }) {
@@ -25,5 +26,23 @@ function Medicos({ medicos, openModal }) {
     </div>
   );
 }
+
+Formulario.propTypes = {
+  medicos: PropTypes.arrayOf(
+      PropTypes.shape({
+          nombre: PropTypes.string.isRequired, // nombre debe ser un string y es obligatorio
+          disponibilidad: PropTypes.string.isRequired,
+          años: PropTypes.number.isRequired,
+          contacto: PropTypes.shape({
+            telefono: PropTypes.number.isRequired,
+            mail: PropTypes.string.isRequired
+          }),
+          horarios: PropTypes.shape({
+              AM: PropTypes.arrayOf(PropTypes.string).isRequired, // AM debe ser un array de strings
+              PM: PropTypes.arrayOf(PropTypes.string).isRequired, // PM debe ser un array de strings
+          }).isRequired, // horarios es un objeto y es obligatorio
+      })
+  ).isRequired, // medicos debe ser un array de objetos y es obligatorio
+};
 
 export default withModal(Medicos);
