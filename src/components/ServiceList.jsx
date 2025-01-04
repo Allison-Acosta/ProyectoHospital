@@ -1,19 +1,16 @@
 
 import PortalView from "../views/PortalView";
-import { useState } from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 
 // Declaración del componente como una función
-function Servicios({ servicios }) {
-    // Aquí puedes usar lógica y hooks si es necesario
-    // Ejemplo: const [estado, setEstado] = React.useState(valorInicial);
-  
-    // Renderizado del JSX
-      const [view, setView] = useState("home");
+function Servicios({ servicios }) {    
+     
+  const [view, setView] = useState("home");
 
     return (
       <section className="hero">
-         <button onClick={() => setView("portals")}>Portales</button>
+         <button onClick={() => setView("portals")}>Ver Bienvenida</button>
          {view === "portals" && <PortalView />}
         {servicios.map((servicio, index) => (
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 // Declaración del componente como una función
 function Formulario({ medicos }) {
+    
     // Estados para cada campo del formulario
     const [nombre, setNombre] = useState(""); // Guardar el valor del campo "nombre"
     const [email, setEmail] = useState(""); // Guardar el valor del campo "email"
@@ -13,9 +14,13 @@ function Formulario({ medicos }) {
     const [diasSeleccionados, setDiasSeleccionados] = useState({ AM: [], PM: [] }); // Estado para almacenar los días seleccionados para cada turno
 
 
+    // Referencia para el campo "nombre"
+    const inputRef = useRef(null);
+
     // Usamos useEffect para cargar los médicos desde el JSON
     useEffect(() => {
         setMedicosLista(medicos); // Asigna la lista de médicos al estado
+        inputRef.current.focus(); // Establece el foco en el campo "nombre" al cargar la página
     }, []);
 
     // Función para manejar el cambio de opción seleccionada
@@ -50,13 +55,24 @@ function Formulario({ medicos }) {
         return nuevoSeleccion; // Devolver el nuevo estado con el día actualizado
         });
     };
-
+    // Función para reiniciar los campos del formulario
+    const reiniciarCampos = () => {
+        setNombre(""); // Reiniciar el campo "nombre"
+        setEmail(""); // Reiniciar el campo "email"
+        setMensaje(""); // Reiniciar el campo "mensaje"
+        setOpcionSeleccionada(""); // Reiniciar la selección del médico
+        setDiasSeleccionados({ AM: [], PM: [] }); // Reiniciar los días seleccionados
+    };
     // Función para manejar el envío del formulario
     const manejarEnvio = (e) => {
         e.preventDefault(); // Prevenir la recarga de la página al enviar el formulario
         const medicoSeleccionado = medicosLista.find(medico => medico.nombre === opcionSeleccionada);
+
         // Aquí puedes procesar los datos del formulario (por ejemplo, enviarlos a un servidor)
         console.log("Formulario enviado:", { nombre, email, mensaje, medicoSeleccionado, diasSeleccionados });
+
+         // Reiniciar los campos del formulario después de enviar
+         reiniciarCampos();
     };
 
     // Obtener los horarios disponibles del médico seleccionado
@@ -69,12 +85,12 @@ function Formulario({ medicos }) {
 
     const horariosDisponibles = obtenerHorariosDisponibles();
 
-    // Queremos que al mandar el formulario. El foco quede en el campo nombre (por si se quiere hacer una nueva cita)
-    const inputRef = useRef(null);
+    // Queremos que al mandar el formulario. El foco quede en el campo nombre (por si se quiere hacer una nueva cita)    
     const handleFocus = () => {
-        inputRef.current.focus();
-        
+        inputRef.current.focus();        
         };
+
+        
 
     return (
         <div>
