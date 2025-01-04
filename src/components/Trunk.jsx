@@ -5,11 +5,13 @@ import { useContext } from 'react';
 import  {UserContext}  from './Context';
 
 export default function Trunk({indice})
-{
- 
+{ 
   const{medicos, setMedicos, servicios, setServicios} = useContext(UserContext);
-  console.log("hola luego del context");
+
+  console.log("hola en el trunk, luego del context");
   console.log(medicos);
+
+
     {/*1: home o servicios medicos
         2: equipo medico
         3: pedir cita
