@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react"; // Importar React y useState
+import PropTypes from 'prop-types';
 
 // Declaración del componente como una función
-export default function Formulario({ medicos }) {
+function Formulario({ medicos }) {
     // Estados para cada campo del formulario
     const [nombre, setNombre] = useState(""); // Guardar el valor del campo "nombre"
     const [email, setEmail] = useState(""); // Guardar el valor del campo "email"
@@ -177,3 +178,17 @@ export default function Formulario({ medicos }) {
         </div>
     );
 }
+// Definición de PropTypes
+Formulario.propTypes = {
+    medicos: PropTypes.arrayOf(
+        PropTypes.shape({
+            nombre: PropTypes.string.isRequired, // nombre debe ser un string y es obligatorio
+            horarios: PropTypes.shape({
+                AM: PropTypes.arrayOf(PropTypes.string).isRequired, // AM debe ser un array de strings
+                PM: PropTypes.arrayOf(PropTypes.string).isRequired, // PM debe ser un array de strings
+            }).isRequired, // horarios es un objeto y es obligatorio
+        })
+    ).isRequired, // medicos debe ser un array de objetos y es obligatorio
+};
+// Exportación del componente
+export default Formulario;

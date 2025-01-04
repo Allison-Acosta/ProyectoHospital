@@ -1,17 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+import PerformanceProfiler from './components/PerformanceProfiler.jsx'; // Importa el componente PerformanceProfiler
 
-import App from './App.jsx'
-
+// Renderiza la aplicación envuelta en PerformanceProfiler
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <PerformanceProfiler id="AppProfiler">
+      <App />
+    </PerformanceProfiler>
   </StrictMode>,
-)
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
-
-
+);
