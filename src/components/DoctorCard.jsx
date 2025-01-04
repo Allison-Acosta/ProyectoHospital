@@ -27,7 +27,7 @@ function Medicos({ medicos, openModal }) {
   );
 }
 
-Formulario.propTypes = {
+Medicos.propTypes = {
   medicos: PropTypes.arrayOf(
       PropTypes.shape({
           nombre: PropTypes.string.isRequired, // nombre debe ser un string y es obligatorio

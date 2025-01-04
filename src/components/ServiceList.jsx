@@ -31,7 +31,7 @@ function Servicios({ servicios }) {
     );
   }
 
-  Formulario.propTypes = {
+  Servicios.propTypes = {
     servicios: PropTypes.arrayOf(
         PropTypes.shape({
             nombre: PropTypes.string.isRequired, // "nombre" debe ser un string y es obligatorio
