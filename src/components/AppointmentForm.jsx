@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // Importar React y useState
+import React, { useState, useEffect, useRef } from "react"; // Importar React y useState
 
 // Declaración del componente como una función
 export default function Formulario({ medicos }) {
@@ -68,6 +68,12 @@ export default function Formulario({ medicos }) {
 
     const horariosDisponibles = obtenerHorariosDisponibles();
 
+    // Queremos que al mandar el formulario. El foco quede en el campo nombre (por si se quiere hacer una nueva cita)
+    const inputRef = useRef(null);
+    const handleFocus = () => {
+        inputRef.current.focus();
+        
+        };
 
     return (
         <div>
@@ -77,6 +83,7 @@ export default function Formulario({ medicos }) {
             <div>
             <label htmlFor="nombre">Nombre:</label>
             <input
+                ref = {inputRef}
                 type="text"
                 id="nombre"
                 value={nombre}
@@ -165,7 +172,7 @@ export default function Formulario({ medicos }) {
             )}
 
             {/* Botón de envío */}
-            <button type="submit">Enviar</button>
+            <button type="submit" onClick={handleFocus} >Enviar</button>
         </form>
         </div>
     );

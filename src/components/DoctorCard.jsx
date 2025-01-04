@@ -7,9 +7,10 @@ export default function Medicos({ medicos }) {
 
   // Renderizado del JSX
   return (
-    <section className="medicos-container">
-      {medicos.map((medico, index) => (
-        <div className="medico-card" key={index}>
+    <div className="medicos-container">
+      {
+      medicos.map((medico, index) => (
+        <React.Fragment key ={index}>
           <h3 className="medico-nombre">{medico.nombre}</h3>
           <p className="medico-especialidad">{medico.especialidad}</p>
           <p className="medico-años">Años de experiencia: {medico.años}</p>
@@ -24,8 +25,10 @@ export default function Medicos({ medicos }) {
           <h4>Contacto:</h4>
           <p><strong>Teléfono:</strong> {medico.contacto.telefono}</p>
           <p><strong>Email:</strong> <a href={`mailto:${medico.contacto.mail}`}>{medico.contacto.mail}</a></p>
-        </div>
+
+
+        </React.Fragment>
       ))}
-    </section>
+    </div>
   );
 }

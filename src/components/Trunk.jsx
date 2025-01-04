@@ -1,10 +1,15 @@
 import Medicos from './DoctorCard';
 import Formulario from './AppointmentForm';
 import Servicios from './ServiceList';
+import { useContext } from 'react';
+import  {UserContext}  from './Context';
 
-export default function Trunk({indice, medicos, servicios})
+export default function Trunk({indice})
 {
-
+ 
+  const{medicos, setMedicos, servicios, setServicios} = useContext(UserContext);
+  console.log("hola luego del context");
+  console.log(medicos);
     {/*1: home o servicios medicos
         2: equipo medico
         3: pedir cita
