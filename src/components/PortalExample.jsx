@@ -1,21 +1,44 @@
 import { useState } from "react";
 import Modal from "./Modal";
 
-function PortalExample() {
-    const [isOpen, setIsOpen] = useState(false);
-    const openModal = () => setIsOpen(true);
-    const closeModal = () => setIsOpen(false);
-    return (
-        <div>
-            <h2>Ejemplo de Portal</h2>
-            <button onClick={openModal}>Abrir Modal</button>
-            {isOpen && (
-                <Modal onClose={closeModal}>
-                    <h3>Detalles del Evento</h3>
-                    <p>Aquí puedes añadir información adicional sobre el evento.</p>
-                </Modal>
-            )}
-        </div>
-    );
-}
-export default PortalExample;
+const withModal = (WrappedComponent) => {
+    return function WithModalComponent(props) {
+
+        const [isModalOpen, setIsModalOpen] = useState(false);
+        const [medicoSeleccionado, setMedicoSeleccionado] = useState(null);
+
+        const openModal = (medico) => {
+            setIsModalOpen(true);
+            setMedicoSeleccionado(medico);
+        }
+            
+        const closeModal = () => setIsModalOpen(false);
+        
+
+        
+
+        return (
+            <>
+                <WrappedComponent {...props} openModal={openModal} />
+                {isModalOpen && (
+                    <Modal onClose={closeModal}>
+                        {/* Mostrar el nombre del médico seleccionado */}
+                        {medicoSeleccionado && (
+                            <>
+                                <h2>{medicoSeleccionado.nombre}</h2>
+                                <h4>Horarios:</h4>
+                                <p><strong>AM:</strong> {medicoSeleccionado.horarios.AM.join(", ")}</p>
+                                <p><strong>PM:</strong> {medicoSeleccionado.horarios.PM.join(", ")}</p>
+                                <h4>Contacto:</h4>
+                                <p><strong>Teléfono:</strong> {medicoSeleccionado.contacto.telefono}</p>
+                                <p><strong>Email:</strong> <a href={`mailto:${medicoSeleccionado.contacto.mail}`}>{medicoSeleccionado.contacto.mail}</a></p>
+                            </>
+                        )}
+                    </Modal>
+                )}
+            </>
+        );
+    };
+};
+
+export default withModal;
