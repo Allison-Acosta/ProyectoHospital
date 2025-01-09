@@ -8,11 +8,7 @@ export default function Trunk({indice})
 { 
   const{medicos, setMedicos, servicios, setServicios} = useContext(UserContext);
 
-  console.log("hola en el trunk, luego del context");
-  console.log(medicos);
-
-
-    {/*1: home o servicios medicos
+      {/*1: home o servicios medicos
         2: equipo medico
         3: pedir cita
         4: contacto
@@ -62,31 +58,32 @@ export default function Trunk({indice})
     {
         return(
             <main>
-      <section className="grid-container">
-            <Medicos medicos={medicos} />
-      </section>
+              
+              <section className="grid-container">
+                    <Medicos  />
+              </section>
 
-      <section className="grid-container">
-        <div className="leftt">
-          <button type="submit" onClick="mostrarMedicosDisponibles()">
-            Medicos disponibles
-          </button>
-          <li className="medDisponibles"></li>
-        </div>
-        <div className="point">
-          <button type="submit" onClick="mostrarMedicosNoDisponibles()">
-            Medicos sin disponibilidad
-          </button>
-          <li className="medNoDisponibles"></li>
-        </div>
-        <div className="rightt">
-          <button type="submit" onClick="buscarMedicoClass()">
-            Buscar Medico
-          </button>
-          <li className="medBuscado"></li>
-        </div>
-      </section>
-    </main>
+              <section className="grid-container">
+                <div className="leftt">
+                  <button type="submit" onClick="mostrarMedicosDisponibles()">
+                    Medicos disponibles
+                  </button>
+                  <li className="medDisponibles"></li>
+                </div>
+                <div className="point">
+                  <button type="submit" onClick="mostrarMedicosNoDisponibles()">
+                    Medicos sin disponibilidad
+                  </button>
+                  <li className="medNoDisponibles"></li>
+                </div>
+                <div className="rightt">
+                  <button type="submit" onClick="buscarMedicoClass()">
+                    Buscar Medico
+                  </button>
+                  <li className="medBuscado"></li>
+                </div>
+              </section>
+            </main>
       
 
         );
