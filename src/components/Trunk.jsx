@@ -20,12 +20,14 @@ export default function Trunk({indice})
    };
   
 
-  {/*1: home o servicios medicos
-      2: equipo medico
-      3: pedir cita
-      4: contacto
-      5: aranceles*/}
-    
+
+      {/*1: home o servicios medicos
+        2: equipo medico
+        3: pedir cita
+        4: contacto
+        5: aranceles*/}
+    console.log(indice)
+
     if(indice == "1")
     {
         return(
@@ -78,6 +80,7 @@ export default function Trunk({indice})
     else if (indice == "2")
     {
         return(
+
             <main>    
 
 
@@ -87,6 +90,7 @@ export default function Trunk({indice})
 
       
     </main>
+
       
 
         );
