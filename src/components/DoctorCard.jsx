@@ -1,18 +1,43 @@
-import React from "react"; // Importar React (opcional en versiones recientes si usas JSX)
+import React, { useState } from "react";
 import withModal from './PortalExample';
 import PropTypes from 'prop-types';
 
 // Declaración del componente como una función
 function Medicos({ medicos, openModal }) {
-  // Aquí puedes usar lógica y hooks si es necesario
-  // Ejemplo: const [estado, setEstado] = React.useState(valorInicial);
+  // Estado local para los médicos visibles
+  const [medicosFiltrados, setMedicosFiltrados] = useState(medicos);
+
+  // Método para filtrar médicos por especialidad
+  const filtrarPorEspecialidad = () => {
+    const especialidad = prompt("Indica la especialidad que deseas buscar:");
+
+    if (!especialidad) {
+      alert("Debes ingresar una especialidad.");
+      return;
+    }
+
+    const filtrados = medicos.filter(
+      (medico) => medico.especialidad.toLowerCase() === especialidad.toLowerCase()
+    );
+
+    if (filtrados.length === 0) {
+      alert("No se encontraron médicos con esa especialidad.");
+    }
+
+    setMedicosFiltrados(filtrados);
+  };
+
+  const mostrarTodos = () => {
+    setMedicosFiltrados(medicos); // Restablece el estado al array completo
+  };
 
   // Renderizado del JSX
   return (
     <div className="medicos-container">
-      {
-      medicos.map((medico, index) => (
-        <React.Fragment key ={index}>
+      <button onClick={filtrarPorEspecialidad}>Filtrar por Especialidad</button>
+      <button onClick={mostrarTodos}>Mostrar Todos</button>
+      {medicosFiltrados.map((medico, index) => (
+        <React.Fragment key={index}>
           <h3 className="medico-nombre">{medico.nombre}</h3>
           <p className="medico-especialidad">{medico.especialidad}</p>
           <p className="medico-años">Años de experiencia: {medico.años}</p>

@@ -1,4 +1,3 @@
-
 import PortalView from "../views/PortalView";
 import React, { useState } from "react";
 import PropTypes from 'prop-types';
@@ -14,7 +13,7 @@ function Servicios({ servicios }) {
          {view === "portals" && <PortalView />}
         {servicios.map((servicio, index) => (
 
-          <div className="serviceList" key={index}>
+          <React.Fragment key={index}>
            
             <p className="hero__text">{servicio.bajada}</p>
             <h5 className="servicio-descripcion">  {servicio.descripcion}</h5>
@@ -22,7 +21,7 @@ function Servicios({ servicios }) {
               Disponibilidad: {servicio.disponibilidad === "true" ? "Disponible" : "No disponible"}
             </p>
   
-        </div>
+        </React.Fragment>
         ))}
       </section>
     );

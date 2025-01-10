@@ -93,7 +93,7 @@ function Formulario({ medicos }) {
         
 
     return (
-        <div>
+        <React.Fragment>
         <h1>Formulario de Contacto</h1>
         <form onSubmit={manejarEnvio}>
             {/* Campo de nombre */}
@@ -191,7 +191,7 @@ function Formulario({ medicos }) {
             {/* Botón de envío */}
             <button type="submit" onClick={handleFocus} >Enviar</button>
         </form>
-        </div>
+        </React.Fragment>
     );
 }
 // Definición de PropTypes
