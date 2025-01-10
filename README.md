@@ -20,4 +20,5 @@
 
 8. Al fina de AppointmentForm.jsx, ServiceLost.jsx y DoctorCard.jsx se implementan PropTypes para validar los tipos de datos.
 
-9.
+9. Los datos de servicioa vienen de una API https://677dc44194bde1c125295d49.mockapi.io/api/v1/servicios
+   Los datos se obtienen a traves de fetch.
