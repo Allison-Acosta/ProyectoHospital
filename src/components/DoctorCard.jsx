@@ -1,8 +1,11 @@
+
 import React, { useState, useEffect } from "react"; // Importar React (opcional en versiones recientes si usas JSX)
+
 import withModal from './PortalExample';
 import PropTypes from 'prop-types';
 
 // Declaración del componente como una función
+
 function Medicos({ openModal }) {
   const [medicosAPI, setMedicosAPI] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -43,10 +46,12 @@ function Medicos({ openModal }) {
 
   const handleRecargar = () => {
     setRecargar((prev) => !prev); // Alternar el estado para forzar recarga
+
   };
 
   return (
     <div className="medicos-container">
+
       <button onClick={handleRecargar}>Actualizar Staff</button>
       {
         datosObtenidos ? (
@@ -72,6 +77,7 @@ function Medicos({ openModal }) {
           <p>Error en la obtención de datos, por favor actualiza.</p>
         )
       }
+
     </div>
   );
 }

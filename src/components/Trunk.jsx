@@ -1,12 +1,25 @@
 import Medicos from './DoctorCard';
 import Formulario from './AppointmentForm';
 import Servicios from './ServiceList';
-import { useContext } from 'react';
+import { useContext, useState, useRef } from 'react';
 import  {UserContext}  from './Context';
 
 export default function Trunk({indice})
 { 
   const{medicos, setMedicos, servicios, setServicios} = useContext(UserContext);
+   // Referencias para las secciones
+   const homeRef = useRef(null);
+   const testimonioRef = useRef(null);
+   
+ 
+   // Manejador para desplazarse a una sección específica
+   const scrollToSection = (ref) => {
+     if (ref && ref.current) {
+       ref.current.scrollIntoView({ behavior: "smooth" });
+     }
+   };
+  
+
 
       {/*1: home o servicios medicos
         2: equipo medico
@@ -14,16 +27,17 @@ export default function Trunk({indice})
         4: contacto
         5: aranceles*/}
     console.log(indice)
+
     if(indice == "1")
     {
         return(
-    <main className="main-content">
+    <main className="main-content" >
 
-    <section >    
+    <section ref={homeRef} >    
         <Servicios servicios={servicios} />    
     </section>
     
-    <section className="hero">
+    <section className="hero"  ref={testimonioRef}>
         <h2 className="hero__title">Testimonios</h2>
         <div className="card maincard">
         <h3 className="card-header"><strong>María Ines Godoy</strong></h3>
@@ -48,6 +62,15 @@ export default function Trunk({indice})
         </h5>
         </div>
     </section>
+
+<section>
+
+<button onClick={() => scrollToSection(homeRef)}>Ir a Inicio</button>
+<button onClick={() => scrollToSection(testimonioRef)}>Ir a Testimonios</button>
+
+</section>
+    
+
     </main>
 
 
@@ -57,33 +80,17 @@ export default function Trunk({indice})
     else if (indice == "2")
     {
         return(
-            <main>
-              
-              <section className="grid-container">
-                    <Medicos  />
-              </section>
 
-              <section className="grid-container">
-                <div className="leftt">
-                  <button type="submit" onClick="mostrarMedicosDisponibles()">
-                    Medicos disponibles
-                  </button>
-                  <li className="medDisponibles"></li>
-                </div>
-                <div className="point">
-                  <button type="submit" onClick="mostrarMedicosNoDisponibles()">
-                    Medicos sin disponibilidad
-                  </button>
-                  <li className="medNoDisponibles"></li>
-                </div>
-                <div className="rightt">
-                  <button type="submit" onClick="buscarMedicoClass()">
-                    Buscar Medico
-                  </button>
-                  <li className="medBuscado"></li>
-                </div>
-              </section>
-            </main>
+            <main>    
+
+
+      <section className="grid-container">
+            <Medicos medicos={medicos} />
+      </section>
+
+      
+    </main>
+
       
 
         );
