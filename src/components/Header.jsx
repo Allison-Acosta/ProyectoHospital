@@ -29,6 +29,10 @@ export default function Header({ onIndiceChange }) {
             <li className="nav__item">
               <button onClick={() => onIndiceChange("4")}>Contacto</button>
             </li>
+            <li className="nav__item">
+              <button onClick={() => onIndiceChange("6")}>Mantenedor Medico</button>
+            </li>
+  
   
             <li className="nav__item">
               <button

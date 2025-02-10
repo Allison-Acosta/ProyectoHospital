@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react"; // Importar React y useState
 import PropTypes from 'prop-types';
+import { useAuth } from "../auth/AuthContext";
+
 
 // Declaración del componente como una función
 function Formulario({ medicos }) {
@@ -13,6 +15,7 @@ function Formulario({ medicos }) {
     const [medicosLista, setMedicosLista] = useState([]);
     const [diasSeleccionados, setDiasSeleccionados] = useState({ AM: [], PM: [] }); // Estado para almacenar los días seleccionados para cada turno
 
+    const { user, logout } = useAuth();
 
     // Referencia para el campo "nombre"
     const inputRef = useRef(null);
@@ -95,6 +98,8 @@ function Formulario({ medicos }) {
     return (
         <React.Fragment>
         <h1>Formulario de Contacto</h1>
+
+        <p>Bienvenido, {user?.username} </p>
         <form onSubmit={manejarEnvio}>
             {/* Campo de nombre */}
             <div>
