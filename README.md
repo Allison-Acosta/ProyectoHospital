@@ -1,12 +1,13 @@
 # ProyectoHospital- Allison Acosta
-Modulo 5 - Entrega 2
+Modulo 5 - Entrega 3
 
-0. Se instala y se usa React Router Dom
-1. Se usa un formulario para ingresar. Para verlo hay que ir al boton "Mantenedor Medico" del Header (nuevo boton)
-2. Ahi se ve un login y se puede especificar si se quiere ingresar como doctor o como administrador
-3. Los login son: doctor o admin 
-4. Si se ingresa como doctor se muestra una pantalla "bienvenido doctor"
-    Si se ingresa como administrador se muestra la misma pantalla + un boton que lleva al mantenedor medico (Estos botones no estan haciendo nada por ahora).
 
-5. Seguridad:
-    1.Clickjacking
+1. Uso de useState: Se usa en multiples zonas del codigo. 2 ejemplos son:
+    En DoctorCard se usa useState para gestionar el estado de los medicos.
+    En AppointmentForm tambien se usa para gestionar la informacion temporal de las citas.
+2. Uso de useEffect: Se usa en multiples zonas del codigo.
+    En DoctorCard se usa useState para obtener la informacion de los medicos. (tras presionar "recargar")
+    En AppointmentForm tambien se usa obtener la informacion de los medicos (sus horarios al momento de necesitarlo)
+3. Se valida el Login mediante un hook para validar que el usuario solo contenga letras (no numeros) y que la contraseña tenga mas de un caracter. 
+4. Manejo de Errores. En Equipo medico se gestionan los errores durante la peticiones en la API. 
+5. Se revisan las reglas de los hooks mediante React Developer Tools para Chrome. (no sé que ejemplo mostrar, pero estan lindos)
