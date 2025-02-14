@@ -10,9 +10,9 @@ function onRenderCallback(
     commitTime,
     interactions
 ) {
-    console.log(`Profiler [${id}] - ${phase}`);
-    console.log(`Tiempo de renderizado: ${actualDuration} ms`);
-    console.log(`Tiempo base estimado: ${baseDuration} ms`);
+   // console.log(`Profiler [${id}] - ${phase}`);
+   // console.log(`Tiempo de renderizado: ${actualDuration} ms`);
+   // console.log(`Tiempo base estimado: ${baseDuration} ms`);
 }
 
 // Componente PerformanceProfiler

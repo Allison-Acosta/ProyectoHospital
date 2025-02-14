@@ -4,9 +4,7 @@ import servicio from "../../servicios.json";
 
 export const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
-  
-    console.log("hola desde context");
+export const UserProvider = ({ children }) => { 
   const [medicos, setmedicos] = useState(medico);
   const [servicios, setservicios] = useState(servicio);
   

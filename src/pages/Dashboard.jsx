@@ -11,7 +11,7 @@ const Dashboard = () => {
       <p>Bienvenido, {user?.username} ({user?.role})</p>
       <button onClick={logout}>Cerrar sesión</button>
 
-      {user?.role === "admin" && (
+      {user?.role === "Administrador" && (
         <button onClick={() => navigate("/mantenedor-medico")}>
           Ir al Mantenedor Médico
         </button>

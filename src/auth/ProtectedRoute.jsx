@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
+  console.log("hola desde protectedRoute");
   const { user } = useAuth();
 
   if (!user) {

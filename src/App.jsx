@@ -18,8 +18,6 @@ export default function App() {
     setIndice(nuevoIndice);
   };
 
-  console.log("Indice:", indice);
-
   return (
     <Router>
       <AuthProvider>
@@ -47,7 +45,10 @@ export default function App() {
                 element={<Trunk indice={indice} />}
                 
               />
-              <Route path="/dashboard" element={<PrivateRoute><Trunk indice="6" /></PrivateRoute>} />
+              <Route path="/dashboard" element={
+                <PrivateRoute>
+                  <Trunk indice="6" />
+                </PrivateRoute>} />
             </Routes>
           </UserProvider>
           <Footer />

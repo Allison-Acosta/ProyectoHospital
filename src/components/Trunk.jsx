@@ -6,6 +6,7 @@ import { useEffect, useContext, useState, useRef,fetchData } from 'react';
 import { UserContext } from './Context';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import Dashboard from '../pages/Dashboard';
 
 export default function Trunk({ indice }) {
   const { medicos, servicios, setMedicos, setServicios } = useContext(UserContext);
@@ -96,7 +97,7 @@ export default function Trunk({ indice }) {
         </>
       );
     } 
-    else if (user.cargo === "Paciente") {
+    else if (user.role === "Paciente") {
       return (
         <main>
           <Formulario medicos={medicos} />           
@@ -170,11 +171,10 @@ export default function Trunk({ indice }) {
           <Login />
         </>
       );
-    } else if (user.cargo === "Administrador") {
+    } else if (user.role === "Administrador") {
       return (
-        <main>
-          <h2>Dashboard</h2>
-          {/* Contenido del Dashboard */}
+        <main>          
+          <Dashboard/>
         </main>
       );
     } else {

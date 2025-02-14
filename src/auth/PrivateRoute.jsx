@@ -1,11 +1,16 @@
 import { Navigate } from "react-router-dom";
-import { useContext } from "react";
 import { useAuth } from './AuthContext';
 
 export default function PrivateRoute({ children }) {
-  console.log("test si llegue aca");
+  console.log("hola desde privatRoute");
 
   const { user } = useAuth();
+  console.log(user);
   
-  return user && user.cargo === "Administrador" ? children : <Navigate to="/unauthorized" />;
+  // Verifica si el usuario está autenticado y si tiene el rol de "Administrador"
+  if (!user || user.role !== "Administrador") {
+    return <Navigate to="/unauthorized" />;
+  }
+
+  return children;
 }
