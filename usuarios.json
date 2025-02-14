@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "nombre": "Juan Pérez",
+      "cargo": "Administrador",
+      "usuario": "juan_admin",
+      "password": "admin123"
+    },
+    {
+      "id": 2,
+      "nombre": "María Gómez",
+      "cargo": "Médico",
+      "especialidad": "Cardiología",
+      "usuario": "maria_medico",
+      "password": "medico456"
+    },
+    {
+      "id": 3,
+      "nombre": "Carlos López",
+      "cargo": "Paciente",
+      "edad": 35,
+      "diagnostico": "Hipertensión",
+      "usuario": "carlos_paciente",
+      "password": "paciente789"
+    }
+  ]

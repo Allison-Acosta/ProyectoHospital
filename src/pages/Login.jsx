@@ -1,20 +1,31 @@
 import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import usuarios from "../../usuarios.json";  // Asegúrate de importar los datos correctamente
 
-const Login = () => {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login } = useAuth(); // Asumiendo que 'login' hace el manejo básico de la sesión
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await login(username, password);
-      navigate("/ReservarCita"); // Redirige al formulario de citas después del login
-    } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+    
+    // Verificar que las credenciales sean correctas
+    const user = usuarios.find(u => u.usuario === username && u.password === password);
+    
+    if (user) {
+      // Verificar si el usuario tiene el cargo de 'Administrador'
+      if (user.cargo === "Administrador") {
+        login(username, password); // Iniciar sesión (si tienes lógica para eso)
+        navigate("/dashboard"); // Redirigir al Dashboard si es Administrador
+      } else {
+        // Si no es administrador, mostrar mensaje de acceso denegado
+        alert("Acceso Denegado: Solo Administradores pueden acceder al Dashboard.");
+      }
+    } else {
+      alert("Usuario o contraseña incorrectos.");
     }
   };
 
@@ -40,6 +51,4 @@ const Login = () => {
       </form>
     </div>
   );
-};
-
-export default Login;
+}

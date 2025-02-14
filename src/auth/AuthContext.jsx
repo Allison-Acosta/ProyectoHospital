@@ -1,11 +1,10 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login as authLogin, logout as authLogout } from "../services/AuthServices";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();  // Exportación explícita
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null)
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
   const navigate = useNavigate();
 
   const login = async (username, password) => {

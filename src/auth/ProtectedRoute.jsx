@@ -1,6 +1,5 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
-import { isTokenExpired } from "../utils/jwUtils";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useAuth();

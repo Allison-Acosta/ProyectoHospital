@@ -1,48 +1,30 @@
 import Medicos from './DoctorCard';
 import Formulario from './AppointmentForm';
 import Servicios from './ServiceList';
+import Login from '../pages/Login';
 import { useEffect, useContext, useState, useRef } from 'react';
 import { UserContext } from './Context';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { AuthProvider } from "../auth/AuthContext";
-import ProtectedRoute from "../auth/ProtectedRoute";
-import Login from "../pages/Login";
-import Dashboard from "../pages/Dashboard";
-import MantenedorMedico from "../pages/MantenedorMedico";
-import Unauthorized from "../pages/Unauthorized";
-import apiClient from '../apiClient'; // Importa el cliente HTTP configurado
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
 
 export default function Trunk({ indice }) {
   const { medicos, servicios, setMedicos, setServicios } = useContext(UserContext);
   const homeRef = useRef(null);
   const testimonioRef = useRef(null);
   const navigate = useNavigate();
+  const { user } = useAuth();  // Obtener el usuario desde el contexto de autenticación
 
   // Redirigir a "/" si el índice es 1, 2, 4 o 5
   useEffect(() => {
     if (["1", "2", "3", "4", "5", "6"].includes(indice)) {
       navigate("/", { replace: true });
     }
-  }, [indice]);
+  }, [indice, navigate]);
 
   // Manejador para desplazarse a una sección específica
   const scrollToSection = (ref) => {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  // Función para obtener datos de la API (fetchData)
-  const fetchData = async (url, setData) => {
-    try {
-      const response = await apiClient.get(url); // Usa apiClient para incluir el JWT
-      setData(response.data); // Actualiza el estado con los datos recibidos
-    } catch (error) {
-      console.error("Error al obtener datos:", error);
-      if (error.response && error.response.status === 401) {
-        // Si el token no es válido, redirige al login
-        navigate("/login");
-      }
     }
   };
 
@@ -53,17 +35,7 @@ export default function Trunk({ indice }) {
     }
   }, [indice, setMedicos]);
 
-  // Obtener datos del dashboard cuando el índice es 6 (Autenticación requerida)
-  useEffect(() => {
-    if (indice === "6") {
-      fetchData('/api/dashboard', (data) => {
-        // Aquí podrías manejar los datos del dashboard si es necesario
-        console.log("Datos del dashboard:", data);
-      });
-    }
-  }, [indice]);
-
-  if (indice == "1") {
+  if (indice === "1") {
     return (
       <main className="main-content">
         <section ref={homeRef}>
@@ -71,6 +43,7 @@ export default function Trunk({ indice }) {
         </section>
         <section className="hero" ref={testimonioRef}>
           <h2 className="hero__title">Testimonios</h2>
+          {/* Aquí puedes añadir testimonios dinámicamente */}
           <div className="card maincard">
             <h3 className="card-header"><strong>María Ines Godoy</strong></h3>
             <h5 className="card-body">
@@ -100,7 +73,7 @@ export default function Trunk({ indice }) {
         </section>
       </main>
     );
-  } else if (indice == "2") {
+  } else if (indice === "2") {
     return (
       <main>
         <section className="grid-container">
@@ -108,31 +81,13 @@ export default function Trunk({ indice }) {
         </section>
       </main>
     );
-  } else if (indice == "3") {
+  } else if (indice === "3") {
     return (
-      <Routes>
-        {/* Ruta por defecto: redirige al login si no está autenticado */}
-        <Route path="/" element={<Navigate to="/loginPaciente" replace />} />
-        <Route path="/login" element={<Navigate to="/loginPaciente" replace />} />
-
-        {/* Ruta de inicio de sesión */}
-        <Route path="/loginPaciente" element={<Login />} />
-
-        {/* Ruta de no autorizado */}
-        <Route path="/unauthorizedPaciente" element={<Unauthorized />} />
-
-        {/* Ruta protegida para el formulario de citas */}
-        <Route
-          path="/ReservarCita"
-          element={
-            <ProtectedRoute allowedRoles={["paciente"]}>
-              <Formulario medicos={medicos} />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <main>
+        {/* Aquí solo se mostraría el contenido relacionado a ReservarCita */}
+      </main>
     );
-  } else if (indice == "4") {
+  } else if (indice === "4") {
     return (
       <main className="main-content">
         <section className="hero">
@@ -168,7 +123,7 @@ export default function Trunk({ indice }) {
         </section>
       </main>
     );
-  } else if (indice == "5") {
+  } else if (indice === "5") {
     return (
       <main className="main-content">
         <section className="hero">
@@ -186,37 +141,26 @@ export default function Trunk({ indice }) {
         </section>
       </main>
     );
-  } else if (indice == "6") {
-    console.log("Estoy en el índice 6 - Autenticación requerida");
-    return (
-      <Routes>
-        {/* Ruta para la página principal */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
-
-        {/* Rutas de autenticación */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
-
-        {/* Rutas protegidas */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute allowedRoles={["admin", "doctor"]}>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/mantenedor-medico"
-          element={
-            <ProtectedRoute allowedRoles={["admin"]}>
-              <MantenedorMedico />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
-    );
+  } else if (indice === "6") {
+    // Verifica si el usuario está logeado y tiene el rol adecuado
+    if (!user) {
+      return (
+        <>
+          <h2>Por favor, inicia sesión para acceder al Dashboard</h2>
+          <Login />
+        </>
+      );
+    } else if (user.cargo === "Administrador") {
+      return (
+        <main>
+          <h2>Dashboard</h2>
+          {/* Contenido del Dashboard */}
+        </main>
+      );
+    } else {
+      return <h2>Acceso Denegado</h2>;
+    }
   } else {
-    return "";
+    return null; // Si no se cumple ninguna condición, no se muestra nada
   }
 }

@@ -4,7 +4,7 @@ import { useAuth } from "../auth/AuthContext";
 
 
 // Declaración del componente como una función
-function Formulario({ medicos }) {
+export default function Formulario({ medicos }) {
     
     // Estados para cada campo del formulario
     const [nombre, setNombre] = useState(""); // Guardar el valor del campo "nombre"
@@ -211,5 +211,3 @@ Formulario.propTypes = {
         })
     ).isRequired, // medicos debe ser un array de objetos y es obligatorio
 };
-// Exportación del componente
-export default Formulario;
