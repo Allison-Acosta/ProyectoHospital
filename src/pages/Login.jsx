@@ -17,12 +17,13 @@ export default function Login() {
     
     if (user) {
       // Verificar si el usuario tiene el cargo de 'Administrador'
+      
       if (user.cargo === "Administrador") {
         login(username, password); // Iniciar sesión (si tienes lógica para eso)
         navigate("/dashboard"); // Redirigir al Dashboard si es Administrador
       } else {
         // Si no es administrador, mostrar mensaje de acceso denegado
-        alert("Acceso Denegado: Solo Administradores pueden acceder al Dashboard.");
+        alert("Acceso Denegado: Solo Administradores pueden acceder al mantenedor medico.");
       }
     } else {
       alert("Usuario o contraseña incorrectos.");

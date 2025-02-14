@@ -7,7 +7,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>Mantenedor médico</h1>
+      <h2>Mantenedor médico</h2>
       <p>Bienvenido, {user?.username} ({user?.role})</p>
       <button onClick={logout}>Cerrar sesión</button>
 

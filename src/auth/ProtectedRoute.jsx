@@ -3,9 +3,8 @@ import { useAuth } from "./AuthContext";
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useAuth();
-  const token = localStorage.getItem('jwtToken');
 
-  if (!user || !token || isTokenExpired(token)) {
+  if (!user) {
     return <Navigate to="/login" replace />;
   }
 

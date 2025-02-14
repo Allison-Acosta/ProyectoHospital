@@ -2,7 +2,7 @@ import Medicos from './DoctorCard';
 import Formulario from './AppointmentForm';
 import Servicios from './ServiceList';
 import Login from '../pages/Login';
-import { useEffect, useContext, useState, useRef } from 'react';
+import { useEffect, useContext, useState, useRef,fetchData } from 'react';
 import { UserContext } from './Context';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
@@ -29,11 +29,15 @@ export default function Trunk({ indice }) {
   };
 
   // Obtener datos de médicos cuando el índice es 3 (Pedir Cita)
+  /*
   useEffect(() => {
     if (indice === "3") {
       fetchData('/api/medicos', setMedicos); // Obtiene la lista de médicos
     }
   }, [indice, setMedicos]);
+
+*/
+
 
   if (indice === "1") {
     return (
@@ -82,11 +86,27 @@ export default function Trunk({ indice }) {
       </main>
     );
   } else if (indice === "3") {
-    return (
-      <main>
-        {/* Aquí solo se mostraría el contenido relacionado a ReservarCita */}
-      </main>
-    );
+    
+    if (!user) {
+      return (
+        <>
+          <h3>Por favor, inicia sesión para pedir una cita</h3>
+          
+          <Login />
+        </>
+      );
+    } 
+    else if (user.cargo === "Paciente") {
+      return (
+        <main>
+          <Formulario medicos={medicos} />           
+        </main>
+      );
+    } else 
+    {
+      return <h2>Acceso Denegado</h2>;
+    }     
+    
   } else if (indice === "4") {
     return (
       <main className="main-content">
@@ -146,7 +166,7 @@ export default function Trunk({ indice }) {
     if (!user) {
       return (
         <>
-          <h2>Por favor, inicia sesión para acceder al Dashboard</h2>
+          <h3>Por favor, inicia sesión para acceder al Mantenedor médico</h3>
           <Login />
         </>
       );
