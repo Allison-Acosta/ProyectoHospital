@@ -3,7 +3,10 @@ Modulo 5 - Entrega Final
 
 1. Se agrega en DorctoCard: AgregarMedico ("POST), ActualizarMedico (PUT) y eliminarMedico("DELETE).
 2. Se modifica AppoitmentForm a typeScript
-3. Seguridad: 
+3. Seguridad: Se usa Reac Router Dom para autentificar a los usuarios
+    Solo usuarios autorizados pueden ingresar a MAntenedorMedico.
+    Solo pacientes pueden pedir citas
+    se validan y encriptan las contraseñas.
 4. Uso de useState: Se usa en multiples zonas del codigo. 2 ejemplos son:
     En DoctorCard se usa useState para gestionar el estado de los medicos.
     En AppointmentForm tambien se usa para gestionar la informacion temporal de las citas.
