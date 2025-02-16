@@ -171,7 +171,7 @@ export default function Trunk({ indice }) {
           <Login />
         </>
       );
-    } else if (user.role === "Administrador") {
+    } else if (user.role === "Administrador" || user.role === "Medico") {
       return (
         <main>          
           <Dashboard/>

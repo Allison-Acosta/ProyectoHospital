@@ -24,6 +24,10 @@ export default function App() {
         <div>
           <Header onIndiceChange={manejarCambioDeIndice} />
           <UserProvider>
+
+            {/* Trunk siempre renderizado */}
+            <Trunk indice={indice} />
+
             <Routes>
               {/* Rutas de Login */}
               <Route path="/login" element={<Login />} />
@@ -39,12 +43,7 @@ export default function App() {
                 }
               />
 
-              {/* Ruta para el trunk que cambia según el indice */}
-              <Route
-                path="/"
-                element={<Trunk indice={indice} />}
-                
-              />
+              {/* Ruta dashboard */}
               <Route path="/dashboard" element={
                 <PrivateRoute>
                   <Trunk indice="6" />
@@ -56,4 +55,5 @@ export default function App() {
       </AuthProvider>
     </Router>
   );
+
 }

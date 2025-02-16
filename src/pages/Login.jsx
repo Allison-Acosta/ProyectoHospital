@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import usuarios from "../../usuarios.json";  // Asegúrate de importar los datos correctamente
+import bcrypt from "bcryptjs";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -11,11 +12,19 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Buscar el usuario por nombre de usuario
+    const user = usuarios.find(u => u.usuario === username);
     
-    // Verificar que las credenciales sean correctas
-    const user = usuarios.find(u => u.usuario === username && u.password === password);
+    if (!user) {
+      alert("Usuario o contraseña incorrectos.");
+      return;
+    }
+  
+    // Comparar la contraseña ingresada con la hasheada
+    const match = await bcrypt.compare(password, user.password);
     
-    if (user) {
+    if (match) {
       // Verificar si el usuario tiene el cargo de 'Administrador'
       login(user.usuario, user.cargo); // Pasar el nombre de usuario y el cargo al contexto de autenticación
       navigate("/dashboard"); // Redirigir al Dashboard si es Administrador

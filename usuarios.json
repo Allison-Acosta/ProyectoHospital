@@ -4,7 +4,7 @@
       "nombre": "Juan Pérez",
       "cargo": "Administrador",
       "usuario": "admin",
-      "password": "admin123"
+      "password": "$2b$10$VpJHGQa/kaGgy8y297597.BBnug/ihldmM6TRqEpevdV7DLebgYKS"
     },
     {
       "id": 2,
@@ -12,7 +12,7 @@
       "cargo": "Medico",
       "especialidad": "Cardiología",
       "usuario": "medico",
-      "password": "medico123"
+      "password": "$2b$10$7vA8tMoWhg6y00FAzCOyoOHt5Fb/oMATLziMiPPFHVwwaoORm7kja"
     },
     {
       "id": 3,
@@ -21,6 +21,6 @@
       "edad": 35,
       "diagnostico": "Hipertensión",
       "usuario": "paciente",
-      "password": "paciente123"
+      "password": "$2b$10$ROemsfnEPHBxqS2rQvLiMOdZreBquM9XADzQpP44W9j7Fko1NqwZS"
     }
   ]
