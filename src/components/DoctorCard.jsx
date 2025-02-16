@@ -9,30 +9,68 @@ function Medicos({ openModal }) {
   const [datosObtenidos, setDatosObtenidos] = useState(true);
   const [recargar, setRecargar] = useState(false);
 
-  const cargarDatos = async () => {
+  const API_URL = "https://677dc44194bde1c125295d49.mockapi.io/api/v1/medicos";
+
+const cargarDatos = async () => {
     setCargando(true);
     try {
-      const response = await fetch(
-        "https://677dc44194bde1c125295d49.mockapi.io/api/v1/medicos"
-      );
-      if (!response.ok) {
-        setDatosObtenidos(false);
-        throw new Error("Error en la solicitud");
-      }
-      const data = await response.json();
-
-      setTimeout(() => {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("Error en la solicitud");
+        const data = await response.json();
         setMedicosAPI(data);
-        setMedicosFiltrados(data); // Inicializar con todos los médicos
-        setCargando(false);
+        setMedicosFiltrados(data);
         setDatosObtenidos(true);
-      }, 3000);
     } catch (error) {
-      console.error("Error:", error);
-      setCargando(false);
-      setDatosObtenidos(false);
+        console.error("Error al obtener los datos:", error);
+        setDatosObtenidos(false);
+    } finally {
+        setCargando(false);
     }
-  };
+};
+
+const agregarMedico = async (nuevoMedico) => {
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(nuevoMedico),
+        });
+        if (!response.ok) throw new Error("Error al agregar médico");
+        const medicoCreado = await response.json();
+        setMedicosAPI(prev => [...prev, medicoCreado]);
+        setMedicosFiltrados(prev => [...prev, medicoCreado]);
+    } catch (error) {
+        console.error("Error al agregar el médico:", error);
+    }
+};
+
+const actualizarMedico = async (id, datosActualizados) => {
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(datosActualizados),
+        });
+        if (!response.ok) throw new Error("Error al actualizar médico");
+        const medicoActualizado = await response.json();
+        setMedicosAPI(prev => prev.map(medico => medico.id === id ? medicoActualizado : medico));
+        setMedicosFiltrados(prev => prev.map(medico => medico.id === id ? medicoActualizado : medico));
+    } catch (error) {
+        console.error("Error al actualizar el médico:", error);
+    }
+};
+
+const eliminarMedico = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        if (!response.ok) throw new Error("Error al eliminar médico");
+        setMedicosAPI(prev => prev.filter(medico => medico.id !== id));
+        setMedicosFiltrados(prev => prev.filter(medico => medico.id !== id));
+    } catch (error) {
+        console.error("Error al eliminar el médico:", error);
+    }
+};
+
 
   useEffect(() => {
     cargarDatos();
