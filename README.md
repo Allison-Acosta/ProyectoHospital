@@ -1,23 +1,23 @@
 # ProyectoHospital- Allison Acosta
-Modulo 5 - Entrega Final
+Modulo 6 - Entrega 1
 
-1. Se agrega en DorctoCard: AgregarMedico ("POST), ActualizarMedico (PUT) y eliminarMedico("DELETE).
-2. Se modifica AppoitmentForm a typeScript
-3. Seguridad: Se usa Reac Router Dom para autentificar a los usuarios
-    Solo usuarios autorizados pueden ingresar a MAntenedorMedico.
-    Solo pacientes pueden pedir citas
-    se validan y encriptan las contraseñas.
-4. Uso de useState: Se usa en multiples zonas del codigo. 2 ejemplos son:
-    En DoctorCard se usa useState para gestionar el estado de los medicos.
-    En AppointmentForm tambien se usa para gestionar la informacion temporal de las citas.
-5. Uso de useEffect: Se usa en multiples zonas del codigo.
-    En DoctorCard se usa useState para obtener la informacion de los medicos. (tras presionar "recargar")
-    En AppointmentForm tambien se usa obtener la informacion de los medicos (sus horarios al momento de necesitarlo)
-6. Se valida el Login mediante un hook para validar que el usuario solo contenga letras (no numeros) y que la contraseña tenga mas de un caracter. 
-7. Manejo de Errores. En Equipo medico se gestionan los errores durante la peticiones en la API. 
-8. Se revisan las reglas de los hooks mediante React Developer Tools para Chrome. (no sé que ejemplo mostrar, pero estan lindos).
-9. Clickjacking:En este proyecto de React, no se han implementado algunas medidas de seguridad como Clickjacking, XSS, SQL Injection y DoS, ya que actualmente estamos trabajando solo con datos locales en un archivo JSON y no contamos con una API o base de datos.
-Clickjacking: Esta protección se aplica en el servidor, pero como solo estamos trabajando en el frontend, no podemos configurarla en este momento.
-XSS (Cross-Site Scripting): React ya se encarga de escapar las entradas HTML por defecto, por lo que la exposición a XSS es mínima por ahora.
-SQL Injection: No use bases de datos ni APIs externas, por lo que este tipo de ataque no fue relevante para este momento.
-Ataques DoS (Denegación de Servicio): Como la aplicación no está conectada a un servidor, no estamos expuestos a este tipo de ataque.
+1. Se agrega un archivo manifest.json en la carpeta public
+    Adicionalmente se crea la carpeta icons con iconos del hospital en 512 y 128 px.
+2. Se agregan las dependencias para PWA con npm install vite-plugin-pwa --save-dev
+    Se edita el vite.config.js
+    Se crea el sw.js
+3. Para configurar el service worker, editamos el archivo sw.js antes creado.
+    Usaré una estrategia Stale-While-Revalidate 
+4. Se verificó que el programa funciona en version offline, En la pestaña "Equipo medico" no carga los medicos, ya que esta informacion viene de una API online. 
+y actualmente esta no está guardada en la memoria CACHE. 
+5. Para el informe de Lighthouse en version movile se tienen los siguientes resultados: (estos se hicieron a partir de la pag principal)
+    34% performance
+    90% accessibility
+    96% Best practices
+    83% SEO
+   En el caso de la version web:
+    44% performance
+    90% accessibility
+    96% Best practices
+    83% SEO
+ Los informes se pueden ver en la carpeta de documentos del proyecto.
