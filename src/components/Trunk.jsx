@@ -20,7 +20,7 @@ export default function Trunk({ indice }) {
 
   // Redirigir a "/" si el índice es 1, 2, 4 o 5
   useEffect(() => {
-    if (["1", "2", "3", "4", "5", "6"].includes(indice)) {
+    if (["1", "2",  "4", "5", "6"].includes(indice)) {
       navigate("/", { replace: true });
     }
   }, [indice]);
@@ -110,27 +110,13 @@ export default function Trunk({ indice }) {
     );
   } else if (indice == "3") {
     return (
-      <Routes>
-        {/* Ruta por defecto: redirige al login si no está autenticado */}
-        <Route path="/" element={<Navigate to="/loginPaciente" replace />} />
-        <Route path="/login" element={<Navigate to="/loginPaciente" replace />} />
-
-        {/* Ruta de inicio de sesión */}
-        <Route path="/loginPaciente" element={<Login />} />
-
-        {/* Ruta de no autorizado */}
-        <Route path="/unauthorizedPaciente" element={<Unauthorized />} />
-
-        {/* Ruta protegida para el formulario de citas */}
-        <Route
-          path="/ReservarCita"
-          element={
-            <ProtectedRoute allowedRoles={["paciente"]}>
-              <Formulario medicos={medicos} />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <main>
+      <section className="grid-container">
+        <Formulario medicos={medicos} />
+      </section>
+    </main>
+              
+            
     );
   } else if (indice == "4") {
     return (

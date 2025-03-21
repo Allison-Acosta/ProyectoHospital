@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useAuth } from "../auth/AuthContext";
+import { initDB, addCita, getCitas } from "./db";
 
 interface Horarios {
     AM: string[];
@@ -14,7 +14,7 @@ interface Medico {
 interface FormularioProps {
     medicos: Medico[];
 }
-// Declaración del componente como una función
+
 const Formulario: React.FC<FormularioProps> = ({ medicos }) => {
     const [nombre, setNombre] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -22,10 +22,46 @@ const Formulario: React.FC<FormularioProps> = ({ medicos }) => {
     const [opcionSeleccionada, setOpcionSeleccionada] = useState<string>("");
     const [medicosLista, setMedicosLista] = useState<Medico[]>([]);
     const [diasSeleccionados, setDiasSeleccionados] = useState<{ AM: string[]; PM: string[] }>({ AM: [], PM: [] });
+    const [db, setDb] = useState<IDBDatabase | null>(null);
 
-    const { user } = useAuth();
     const inputRef = useRef<HTMLInputElement>(null);
 
+    // Cargar datos desde localStorage al montar el componente
+    useEffect(() => {
+        const storedNombre = localStorage.getItem("nombre");
+        const storedEmail = localStorage.getItem("email");
+
+        if (storedNombre) setNombre(storedNombre);
+        if (storedEmail) setEmail(storedEmail);
+
+        console.log("Datos cargados desde localStorage:", { storedNombre, storedEmail });
+    }, []);
+
+    // Guardar nombre en localStorage cuando cambia
+    useEffect(() => {
+        localStorage.setItem("nombre", nombre);
+        console.log("Nombre guardado en localStorage:", nombre);
+    }, [nombre]);
+
+    // Guardar email en localStorage cuando cambia
+    useEffect(() => {
+        localStorage.setItem("email", email);
+        console.log("Email guardado en localStorage:", email);
+    }, [email]);
+
+    // Inicializar IndexedDB al montar el componente
+    useEffect(() => {
+        initDB()
+            .then((database) => {
+                setDb(database);
+                console.log("Base de datos inicializada correctamente");
+            })
+            .catch((error) => {
+                console.error("Error al inicializar la base de datos:", error);
+            });
+    }, []);
+
+    // Cargar la lista de médicos
     useEffect(() => {
         setMedicosLista(medicos);
         if (inputRef.current) inputRef.current.focus();
@@ -38,7 +74,6 @@ const Formulario: React.FC<FormularioProps> = ({ medicos }) => {
     const manejarSeleccionDia = (turno: "AM" | "PM", dia: string) => {
         setDiasSeleccionados((prevState) => {
             const nuevoSeleccion = { ...prevState };
-            
             if (turno === "AM") {
                 nuevoSeleccion[turno] = nuevoSeleccion[turno].includes(dia) ? [] : [dia];
                 nuevoSeleccion["PM"] = [];
@@ -51,18 +86,40 @@ const Formulario: React.FC<FormularioProps> = ({ medicos }) => {
     };
 
     const reiniciarCampos = () => {
-        setNombre("");
-        setEmail("");
         setMensaje("");
         setOpcionSeleccionada("");
         setDiasSeleccionados({ AM: [], PM: [] });
     };
 
-    const manejarEnvio = (e: React.FormEvent<HTMLFormElement>) => {
+    const manejarEnvio = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log("Formulario enviado");
+
         const medicoSeleccionado = medicosLista.find((medico) => medico.nombre === opcionSeleccionada);
-        console.log("Formulario enviado:", { nombre, email, mensaje, medicoSeleccionado, diasSeleccionados });
-        reiniciarCampos();
+        console.log("Médico seleccionado:", medicoSeleccionado);
+
+        if (db && medicoSeleccionado) {
+            const cita = {
+                nombre,
+                email,
+                mensaje,
+                medico: medicoSeleccionado.nombre,
+                diasSeleccionados,
+                fecha: new Date().toISOString(),
+            };
+
+            console.log("Cita a guardar:", cita);
+
+            try {
+                const id = await addCita(db, cita);
+                console.log("Cita guardada en IndexedDB con ID:", id);
+                reiniciarCampos();
+            } catch (error) {
+                console.error("Error al guardar la cita:", error);
+            }
+        } else {
+            console.error("Base de datos no inicializada o médico no seleccionado");
+        }
     };
 
     const obtenerHorariosDisponibles = (): Horarios | null => {
@@ -73,109 +130,99 @@ const Formulario: React.FC<FormularioProps> = ({ medicos }) => {
 
     const horariosDisponibles = obtenerHorariosDisponibles();
 
-        
-
     return (
         <>
-        <h1>Formulario de Contacto</h1>
+            <h1>Formulario de Contacto</h1>
+            <p>Bienvenido </p>
+            <form onSubmit={manejarEnvio}>
+                <div>
+                    <label htmlFor="nombre">Nombre:</label>
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        id="nombre"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        placeholder="Ingresa tu nombre"
+                        required
+                    />
+                </div>
 
-<p>Bienvenido, {user?.username} </p>
-<form onSubmit={manejarEnvio}>
-    {/* Campo de nombre */}
-    <div>
-    <label htmlFor="nombre">Nombre:</label>
-    <input
-        ref = {inputRef}
-        type="text"
-        id="nombre"
-        value={nombre}
-        onChange={(e) => setNombre(e.target.value)} // Actualiza el estado al cambiar el valor del campo
-        placeholder="Ingresa tu nombre"
-        required
-    />
-    </div>
+                <div>
+                    <label htmlFor="email">Correo electrónico:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Ingresa tu correo electrónico"
+                        required
+                    />
+                </div>
 
-    {/* Campo de email */}
-    <div>
-    <label htmlFor="email">Correo electrónico:</label>
-    <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)} // Actualiza el estado al cambiar el valor del campo
-        placeholder="Ingresa tu correo electrónico"
-        required
-    />
-    </div>
+                <div>
+                    <label htmlFor="mensaje">Mensaje:</label>
+                    <textarea
+                        id="mensaje"
+                        value={mensaje}
+                        onChange={(e) => setMensaje(e.target.value)}
+                        placeholder="Escribe tu mensaje"
+                        required
+                    />
+                </div>
 
-    {/* Campo de mensaje */}
-    <div>
-    <label htmlFor="mensaje">Mensaje:</label>
-    <textarea
-        id="mensaje"
-        value={mensaje}
-        onChange={(e) => setMensaje(e.target.value)} // Actualiza el estado al cambiar el valor del campo
-        placeholder="Escribe tu mensaje"
-        required
-    />
-    </div>
+                <div>
+                    <label htmlFor="medico">Selecciona un Médico:</label>
+                    <select
+                        id="medico"
+                        value={opcionSeleccionada}
+                        onChange={manejarCambioOpcion}
+                        required
+                    >
+                        <option value="">-- Elige un médico --</option>
+                        {medicosLista.map((medico) => (
+                            <option key={medico.nombre} value={medico.nombre}>
+                                {medico.nombre}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-    {/* Campo seleccionador */}
-    <div>
-    <label htmlFor="medico">Selecciona un Médico:</label>
-    <select
-        id="medico"
-        value={opcionSeleccionada}
-        onChange={manejarCambioOpcion}
-        required
-    >
-        <option value="">-- Elige un médico --</option>
-        {/* Generamos las opciones dinámicamente desde el JSON */}
-        {medicosLista.map((medico) => (
-        <option key={medico.nombre} value={medico.nombre}>
-            {medico.nombre}
-        </option>
-        ))}
-    </select>
-    </div>
+                {horariosDisponibles && (
+                    <div>
+                        <h3>Selecciona los días disponibles para {opcionSeleccionada}</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Turno</th>
+                                    <th>Días disponibles</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {["AM", "PM"].map((turno) => (
+                                    <tr key={turno}>
+                                        <td>{turno}</td>
+                                        <td>
+                                            {horariosDisponibles[turno as "AM" | "PM"].map((dia) => (
+                                                <label key={dia}>
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={diasSeleccionados[turno as "AM" | "PM"].includes(dia)}
+                                                        onChange={() => manejarSeleccionDia(turno as "AM" | "PM", dia)}
+                                                    />
+                                                    {dia}
+                                                </label>
+                                            ))}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
 
-    {/* Tabla de horarios del médico seleccionado */}
-    {horariosDisponibles && (
-        <div>
-        <h3>Selecciona los días disponibles para {opcionSeleccionada}</h3>
-        <table>
-            <thead>
-            <tr>
-                <th>Turno</th>
-                <th>Días disponibles</th>
-            </tr>
-            </thead>
-            <tbody>
-            {["AM", "PM"].map((turno) => (
-                <tr key={turno}>
-                <td>{turno}</td>
-                <td>
-                    {horariosDisponibles[turno as "AM" | "PM"].map((dia) => (
-                    <label key={dia}>
-                        <input
-                        type="checkbox"
-                        checked={diasSeleccionados[turno as "AM" | "PM"].includes(dia)}
-                        onChange={() => manejarSeleccionDia(turno as "AM"|"PM", dia)}
-                        />
-                        {dia}
-                    </label>
-                    ))}
-                </td>
-                </tr>
-            ))}
-            </tbody>
-        </table>
-        </div>
-    )}
-
-    {/* Botón de envío */}
-    <button type="submit" >Enviar</button>
-</form>
+                <button type="submit">Enviar</button>
+            </form>
         </>
     );
 };
