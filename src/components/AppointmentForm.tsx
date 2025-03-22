@@ -67,6 +67,23 @@ const Formulario: React.FC<FormularioProps> = ({ medicos }) => {
         if (inputRef.current) inputRef.current.focus();
     }, [medicos]);
 
+    // Obtener la ubicación del usuario al montar el componente
+    useEffect(() => {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    console.log("Ubicación del usuario:", { latitude, longitude });
+                },
+                (error) => {
+                    console.error("Error al obtener la ubicación:", error.message);
+                }
+            );
+        } else {
+            console.error("Geolocalización no soportada por el navegador");
+        }
+    }, []);
+
     const manejarCambioOpcion = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setOpcionSeleccionada(e.target.value);
     };
