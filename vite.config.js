@@ -13,7 +13,7 @@ export default defineConfig({
         short_name: 'HCA',
         description: '',
         theme_color: '#ffffff',
-        start_url: '/',
+        start_url: '/ProyectoHospital/',
         display: 'standalone',
         icons: [
           {
