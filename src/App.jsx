@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom"; // Cambiar esta línea
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Trunk from "./components/Trunk";
@@ -14,7 +14,7 @@ export default function App() {
   };
 
   return (
-    <Router>
+    <Router> {/* Cambiar BrowserRouter a HashRouter */}
       <AuthProvider>
         <div>
           <Header onIndiceChange={manejarCambioDeIndice} />

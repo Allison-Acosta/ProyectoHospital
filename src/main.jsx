@@ -5,7 +5,7 @@ import PerformanceProfiler from './components/PerformanceProfiler.jsx'; // Impor
 
 // Registrar el Service Worker
 if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js")
+    navigator.serviceWorker.register("./sw.js")
         .then(() => console.log("Service Worker registrado"))
         .catch(error => console.log("Error en el registro del Service Worker:", error));
 }

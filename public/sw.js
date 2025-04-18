@@ -3,8 +3,7 @@ const urlsToCache = [
     "/",
     "/index.html",
     "/main.js",
-    "/styles.css",
-    "/icons/icon-hospital128.png"
+    "/styles.css"
 ];
 
 // Precaching de recursos principales

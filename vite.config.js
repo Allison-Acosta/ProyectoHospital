@@ -16,16 +16,6 @@ export default defineConfig({
         start_url: '/ProyectoHospital/',
         display: 'standalone',
         icons: [
-          {
-              src: "/icons/icon-hospital128.png",
-              sizes: "128x128",
-              type: "image/png"
-          },
-          {
-              src: "/icons/icon-hospital512.png",
-              sizes: "512x512",
-              type: "image/png"
-          }
         ]
         }
       })
